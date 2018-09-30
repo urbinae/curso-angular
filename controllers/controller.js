@@ -1,31 +1,21 @@
-var app = angular.module("MyApp", []); //retorna una referencia a la aplicación
- app.controller("MyController", ["$scope", "$http", function(scope, http){
+var app = angular.module("TodoList", ["LocalStorageModule"]);
 
- 	scope.posts = [];
- 	scope.newPost = {};
- 	http.get("http://jsonplaceholder.typicode.com/posts")
- 	.success(function (data) {
- 		console.log(data);
- 		scope.posts = data;
- 	})
- 	.error(function (err) {
- 		// body...
- 	});
+app.controller("TodoController", function ($scope, localStorageService) {
 
- 	scope.addPost = function () {
- 		http.post("http://jsonplaceholder.typicode.com/posts", {
- 			title: scope.newPost.title, 
- 			body: scope.newPost.body,
- 			userId: 1
- 		})
- 		.success(function (data, status, headers, config) {
- 			console.log(data);
- 			scope.posts.push(data);
- 			scope.newPost = {};
- 		})
- 		.error(function (error, status, headers, config) {
- 			// body...
- 		})
+	if (localStorageService.get("todo-list")) {
+		$scope.todos = localStorageService.get("todo-list");
+	} else {
+		$scope.todos = [];
+	}
+	//$scope.newTodo = {};
+	$scope.addTodo = function () {
+		$scope.todos.push($scope.newTodo); 		
+		$scope.newTodo = {};
+		localStorageService.set("todo-list", $scope.todos);
+ 	};
+
+ 	$scope.clean = function () {
+ 		$scope.todos = [];
+ 		localStorageService.set("todo-list", $scope.todos);	
  	}
- 	
- }])
+});
