@@ -7,15 +7,16 @@ app.controller("TodoController", function ($scope, localStorageService) {
 	} else {
 		$scope.todos = [];
 	}
-	//$scope.newTodo = {};
+	
+	$scope.$watchCollection('todos', function (newValue, oldValue) {
+		localStorageService.set("todo-list", $scope.todos);
+	});	
 	$scope.addTodo = function () {
 		$scope.todos.push($scope.newTodo); 		
 		$scope.newTodo = {};
-		localStorageService.set("todo-list", $scope.todos);
  	};
 
  	$scope.clean = function () {
  		$scope.todos = [];
- 		localStorageService.set("todo-list", $scope.todos);	
  	}
 });
