@@ -8,6 +8,7 @@
 	<ul>
 		<li ng-repeat="todo in todos">
 			<strong>{{todo.description}}</strong> : {{todo.date | date:'short'}}
+			<a href="#" ng-click="removeItem(todo)" style="color:red;">Eliminar</a>
 		</li>
 	</ul>
 	<button ng-click="clean()">Vaciar lista de tareas</button>
@@ -19,6 +20,6 @@
 
 	<script src="../node_modules/angular/angular.min.js"></script>
 	<script src="../node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
-	<script src="../controllers/todolist.js"></script>
+	<script src="../controllers/factories.js"></script>
 </body>
 </html>
