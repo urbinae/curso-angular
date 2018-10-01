@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="ApplyModule">
+<head>
+	<meta charset="utf-8">
+	<title>$apply > $digest > watchers </title>
+</head>
+<body ng-controller="ApplyController">
+	{{ nombre }}
+	<button id="mi_button">
+		Cambiar con apply
+	</button>
+	<button ng-click="cambiar()">
+		Cambiar sin apply
+	</button>
+	<script src="../node_modules/angular/angular.min.js"></script>
+	<script src="../controllers/apply.js"></script>
+</body>
+</html>
