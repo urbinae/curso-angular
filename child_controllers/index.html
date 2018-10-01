@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="ChildModule">
+<head>
+	<meta charset="utf-8">
+	<title>Lista posts: ng-hide ng-post </title>
+</head>
+<body ng-controller="FatherController">
+	{{nombre}}
+	<p>Valor del abuelo <strong>{{$parent.nombre}}</strong></p>
+	<div ng-controller="ChildController">
+		{{nombre}}
+		<p>Valor del abuelo <strong>{{$parent.$parent.nombre}}</strong></p>
+	</div>
+
+	<script src="../node_modules/angular/angular.min.js"></script>
+	<script src="../controllers/child.js"></script>
+</body>
+</html>
